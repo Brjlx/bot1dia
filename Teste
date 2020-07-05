@@ -1,0 +1,18 @@
+from telegram.ext import Updater, CommandHandler
+from time import strftime
+
+up = Updater('946206148:AAFI3dl15iYo5tvm3k773F_vveftl4de4Sw')
+
+
+def Horas(bot, update):
+
+    msg = "Olá {user_name} agora são: "
+    msg += strftime('%Hh:%Mm:%Ss')
+
+    bot.send_message(chat_id=update.message.chat_id,
+                     text=msg.format(
+                         user_name=update.message.from_user.first_name))
+
+
+up.dispatcher.add_handler(CommandHandler('horas', Horas))
+up.start_polling()
